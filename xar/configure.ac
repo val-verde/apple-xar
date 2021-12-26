@@ -206,48 +206,48 @@ AC_CHECK_MEMBERS([struct stat.st_flags])
 
 AC_CHECK_SIZEOF(uid_t)
 if test $ac_cv_sizeof_uid_t = "4"; then
-AC_DEFINE(UID_STRING, RId32)
-AC_DEFINE(UID_CAST, (uint32_t))
+AC_DEFINE(UID_STRING, RId32, "")
+AC_DEFINE(UID_CAST, (uint32_t), "")
 elif test $ac_cv_sizeof_uid_t = "8"; then
-AC_DEFINE(UID_STRING, PRId64)
-AC_DEFINE(UID_CAST, (uint64_t))
+AC_DEFINE(UID_STRING, PRId64, "")
+AC_DEFINE(UID_CAST, (uint64_t), "")
 else
 AC_ERROR(can not detect the size of your system's uid_t type)
 fi
 
 AC_CHECK_SIZEOF(gid_t)
 if test $ac_cv_sizeof_gid_t = "4"; then
-AC_DEFINE(GID_STRING, PRId32)
-AC_DEFINE(GID_CAST, (uint32_t))
+AC_DEFINE(GID_STRING, PRId32, "")
+AC_DEFINE(GID_CAST, (uint32_t), "")
 elif test $ac_cv_sizeof_gid_t = "8"; then
-AC_DEFINE(GID_STRING, PRId64)
-AC_DEFINE(GID_CAST, (uint64_t))
+AC_DEFINE(GID_STRING, PRId64, "")
+AC_DEFINE(GID_CAST, (uint64_t), "")
 else
 AC_ERROR(can not detect the size of your system's gid_t type)
 fi
 
 AC_CHECK_SIZEOF(ino_t)
 if test $ac_cv_sizeof_ino_t = "4"; then
-AC_DEFINE(INO_STRING, PRId32)
-AC_DEFINE(INO_HEXSTRING, PRIx32)
-AC_DEFINE(INO_CAST, (uint32_t))
+AC_DEFINE(INO_STRING, PRId32, "")
+AC_DEFINE(INO_HEXSTRING, PRIx32, "")
+AC_DEFINE(INO_CAST, (uint32_t), "")
 elif test $ac_cv_sizeof_ino_t = "8"; then
-AC_DEFINE(INO_STRING, PRId64)
-AC_DEFINE(INO_HEXSTRING, PRIx64)
-AC_DEFINE(INO_CAST, (uint64_t))
+AC_DEFINE(INO_STRING, PRId64, "")
+AC_DEFINE(INO_HEXSTRING, PRIx64, "")
+AC_DEFINE(INO_CAST, (uint64_t), "")
 else
 AC_ERROR(can not detect the size of your system's ino_t type)
 fi
 
 AC_CHECK_SIZEOF(dev_t)
 if test $ac_cv_sizeof_dev_t = "4"; then
-AC_DEFINE(DEV_STRING, PRId32)
-AC_DEFINE(DEV_HEXSTRING, PRIx32)
-AC_DEFINE(DEV_CAST, (uint32_t))
+AC_DEFINE(DEV_STRING, PRId32, "")
+AC_DEFINE(DEV_HEXSTRING, PRIx32, "")
+AC_DEFINE(DEV_CAST, (uint32_t), "")
 elif test $ac_cv_sizeof_dev_t = "8"; then
-AC_DEFINE(DEV_STRING, PRId64)
-AC_DEFINE(DEV_HEXSTRING, PRIx64)
-AC_DEFINE(DEV_CAST, (uint64_t))
+AC_DEFINE(DEV_STRING, PRId64, "")
+AC_DEFINE(DEV_HEXSTRING, PRIx64, "")
+AC_DEFINE(DEV_CAST, (uint64_t), "")
 else
 AC_ERROR(can not detect the size of your system's dev_t type)
 fi
@@ -257,7 +257,7 @@ AC_CHECK_LIB(acl, acl_get_file)
 dnl Check for paths
 AC_PREFIX_DEFAULT(/usr/local)
 
-AC_CHECK_FUNC([asprintf], AC_DEFINE([HAVE_ASPRINTF]))
+AC_CHECK_FUNC([asprintf], AC_DEFINE([HAVE_ASPRINTF], 0, ""))
 
 dnl 
 dnl Configure libxml2.
@@ -337,7 +337,7 @@ have_libbz2="1"
 AC_CHECK_HEADERS([bzlib.h], , [have_libbz2="0"])
 AC_CHECK_LIB([bz2], [BZ2_bzCompress], , [have_libbz2="0"])
 if test "x${have_libbz2}" = "x1" ; then
-  AC_DEFINE([HAVE_LIBBZ2])
+  AC_DEFINE([HAVE_LIBBZ2], 0, "")
 fi
 
 dnl 
@@ -347,7 +347,7 @@ have_libpthread="1"
 AC_CHECK_HEADERS([pthread.h], , [have_pthread="0"])
 AC_CHECK_LIB([pthread], [pthread_mutex_lock], , [have_pthread="0"])
 if test "x${have_pthread}" = "x1" ; then
-  AC_DEFINE([HAVE_PTHREAD])
+  AC_DEFINE([HAVE_PTHREAD], 0, "")
 fi
 
 dnl 
