@@ -40,6 +40,9 @@
 #include <sys/types.h>
 #include <sys/mount.h>
 #include <sys/param.h>
+#if __has_include(<sys/statfs.h>)
+#include <sys/statfs.h>
+#endif
 #include <arpa/inet.h>
 #include <string.h>
 #include <unistd.h>
@@ -587,12 +590,17 @@ size_t xar_optimal_io_size_at_path(const char *path)
 	if ( statfs(path, &target_mount_stat_fs) == 0 )
 	{
 		// iosize is the size that the filesystem likes to work in
+        #ifdef __APPLE__
 		size_t fs_iosize = target_mount_stat_fs.f_iosize;
+        #else
+		size_t fs_iosize = target_mount_stat_fs.f_bsize;
+        #endif
 		if ( fs_iosize == -1 )
 		{
 			fs_iosize = optimal_rsize;
 		}
 		
+        #ifdef __APPLE__
 		// If we're a remote filesystem, never let us go below the optimal size above of 1MiB
 		// NFS is horrible and lies that the optimal size is 512 bytes.
 		// Whereas SMB in my testing returns 7MiBs (far more practicle)
@@ -605,6 +613,7 @@ size_t xar_optimal_io_size_at_path(const char *path)
 			}
 		}
 		else
+        #endif
 		{
 			optimal_rsize = fs_iosize;
 		}
