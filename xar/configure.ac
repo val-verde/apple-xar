@@ -135,6 +135,7 @@ case "${host}" in
 	dnl Linux needs this for things like asprintf() and poll() flags.
 	CPPFLAGS="$CPPFLAGS -D_GNU_SOURCE"
 	RPATH="-Wl,-rpath,"
+	LIBS="$LIBS -lcrypto"
 	;;
   *-*-netbsd*)
 	AC_MSG_CHECKING([ABI])
