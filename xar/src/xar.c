@@ -51,8 +51,8 @@
 #include <time.h>
 #include "xar_internal.h"
 #include "config.h"
-#include "filetree.h"
-#include "util.h"
+#include "../lib/filetree.h"
+#include "../lib/util.h"
 #define SYMBOLIC 1
 #define NUMERIC  2
 static int Perms = 0;
