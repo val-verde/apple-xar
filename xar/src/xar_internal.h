@@ -8,11 +8,7 @@
 #ifndef _XAR_INTERNAL_H_
 #define _XAR_INTERNAL_H_
 
-#ifdef XARSIG_BUILDING_WITH_XAR
 #include "xar.h"
-#else
-#include <xar/xar.h>
-#endif // XARSIG_BUILDING_WITH_XAR
 
 // Undeprecate these for internal usage
 xar_t xar_open(const char *file, int32_t flags) API_AVAILABLE(macos(10.4));
